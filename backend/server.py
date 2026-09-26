@@ -7,6 +7,7 @@ from pathlib import Path
 from datetime import datetime, timezone
 from typing import Optional
 import os, secrets
+from copy import deepcopy
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / ".env")
@@ -21,7 +22,7 @@ USERS = {
     "officer": {"password": "demo-officer", "name": "Priya Shah", "title": "Passport Officer", "role": "officer"},
 }
 sessions = {}
-state = {
+INITIAL_STATE = {
     "company": {"name": "Northstar Components", "id": "NSC-2048", "sector": "Industrial electronics", "facilities": 3, "products": 12, "suppliers": 28},
     "emissions": {"records": 148, "valid": 142, "invalid": 3, "duplicates": 3, "period": "FY 2025", "status": "ready"},
     "calculation": {"version": "v2.4", "scope1": 184.2, "scope2": 512.8, "scope3": 1267.4, "total": 1964.4, "updated": "18 Feb 2026, 14:32 UTC"},
@@ -29,6 +30,11 @@ state = {
     "workflow": {"status": "submitted", "finding": True, "locked": False, "events": ["Draft created", "Submitted for MRV", "Finding raised: supplier allocation assumption"]},
     "passport": None,
 }
+state = deepcopy(INITIAL_STATE)
+
+def reset_demo_state():
+    state.clear()
+    state.update(deepcopy(INITIAL_STATE))
 
 async def persist(collection, document):
     try:
@@ -71,6 +77,7 @@ async def root(): return {"message": "Saurient Carbon Passport API", "demo": Tru
 async def login(body: Login):
     if body.username not in USERS or USERS[body.username]["password"] != body.password:
         raise HTTPException(401, "Use one of the three demo accounts")
+    reset_demo_state()
     token = secrets.token_urlsafe(18)
     sessions[token] = {"username": body.username, "role": USERS[body.username]["role"]}
     return {"token": token, "user": user_view(body.username)}

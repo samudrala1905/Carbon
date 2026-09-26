@@ -1,0 +1,41 @@
+{
+  "summary": "Retested the corrected public verification behavior, golden-path API flow, login, role switching, public badges, and desktop overflow. Unknown public pages now show amber UNVERIFIABLE and issued pages show VERIFIED; the regression suite still has an order-dependent unissued-state failure because the API keeps global in-memory issuance state.",
+  "backend_issues": {
+    "critical": [],
+    "minor": [
+      {
+        "endpoint": "/api/public/verify/SAU-NSC-08-4F2A",
+        "issue": "The unissued-state regression cannot pass after the golden-path test issues a passport: global in-memory state persists across tests/sessions, so the default identifier correctly returns valid only because a prior test issued it. Fresh/live unknown IDs return unverifiable.",
+        "priority": "HIGH"
+      }
+    ]
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/test_demo_flow.py",
+    "/app/test_reports/pytest/pytest_results_iteration2.xml"
+  ],
+  "action_items": [
+    "Make demo workflow state resettable or isolate seeded state per test/session so before-issuance verification can be tested independently of a prior issuance.",
+    "Keep the public verification fix and conditional frontend status badge; both passed live checks."
+  ],
+  "critical_code_review_comments": [
+    "Global mutable state and sessions in server.py make issuance order-dependent across users and test runs; this is the root cause of the failing unissued-state regression, not a public-ID comparison bug."
+  ],
+  "updated_files": [
+    "/app/test_reports/iteration_2.json"
+  ],
+  "success_rate": {
+    "backend": "50% (1 of 2 pytest tests passed; golden path passed, unissued-state test was contaminated by prior issuance)",
+    "frontend": "100% (unknown amber badge, valid green badge, login, role switcher, dashboard load, and desktop overflow checks passed)"
+  },
+  "seed_data_creation": "No new seed data created; used the existing seeded demo accounts and Northstar dataset.",
+  "retest_needed": true,
+  "should_call_test_agent_after_fix": true,
+  "context_for_next_testing_agent": "Live unknown verification and UI badges are fixed. Re-run the unissued default-ID test against a fresh/reset backend state, then execute issuance and duplicate prevention in the same isolated flow.",
+  "rca of the issue": "server.py stores workflow and passport in module-level state. test_demo_golden_path_and_controlled_errors issues SAU-NSC-08-4F2A before test_public_unissued_default_identifier_is_not_valid runs, so the latter observes a valid passport. The public endpoint itself returns unverifiable for unknown IDs and the frontend derives VERIFIED/UNVERIFIABLE from result.status as intended."
+}

@@ -122,7 +122,7 @@ async def workflow(body: Action, authorization: Optional[str] = Header(None)):
 
 @api.get("/public/verify/{passport_id}")
 async def verify(passport_id: str):
-    if passport_id != (state["passport"] or {}).get("id", "SAU-NSC-08-4F2A"):
+    if not state["passport"] or passport_id != state["passport"].get("id"):
         return {"status": "unverifiable", "message": "This Carbon Passport could not be found."}
     return {"status": "valid", "passport": state["passport"], "company": state["company"]["name"]}
 

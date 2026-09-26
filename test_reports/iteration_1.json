@@ -1,0 +1,51 @@
+{
+  "summary": "Completed backend golden-path regression and frontend desktop/mobile smoke testing. Core login, role switching, navigation, methodology drawer, ingestion, PCF versioning, MRV lock, issuance, duplicate prevention, public valid/unknown API responses, and mobile overflow checks were exercised.",
+  "backend_issues": {
+    "critical": [
+      {
+        "endpoint": "/api/public/verify/{passport_id}",
+        "issue": "Before any passport is issued, the default identifier SAU-NSC-08-4F2A is accepted as valid because the comparison falls back to that hardcoded identifier while state.passport is null. The response has status valid with passport null.",
+        "priority": "HIGH"
+      }
+    ],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [
+      {
+        "component": "PublicVerify",
+        "issue": "Unknown/unverifiable passport page still renders a green VERIFIED status chip; this contradicts the displayed 'Passport not verifiable' state.",
+        "selector": ".public-header .status-chip",
+        "priority": "HIGH"
+      }
+    ],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/test_demo_flow.py",
+    "/app/test_reports/pytest/pytest_results.xml"
+  ],
+  "action_items": [
+    "Return unverifiable when state.passport is null, regardless of requested identifier; remove the default-ID fallback from public verification.",
+    "Render the public status chip conditionally as VERIFIED only for valid results, otherwise UNVERIFIABLE or a neutral warning state.",
+    "Add data-testid attributes to remaining interactive controls such as company supplier review, manual emission entry, and ledger link if they are intended to be part of the demo flow."
+  ],
+  "critical_code_review_comments": [
+    "Public verification currently exposes a false valid state before issuance, violating the required public passport warning/state behavior.",
+    "The in-memory global state is shared across sessions and test runs; this is acceptable for a prototype demo but makes reset/isolation impossible and can cause order-dependent verification results."
+  ],
+  "updated_files": [
+    "/app/backend/tests/test_demo_flow.py",
+    "/app/test_reports/iteration_1.json"
+  ],
+  "success_rate": {
+    "backend": "50% (1 of 2 regression tests passed; full golden path passed)",
+    "frontend": "95%"
+  },
+  "seed_data_creation": "No new seed data created; used the existing seeded demo accounts and Northstar dataset.",
+  "retest_needed": true,
+  "should_call_test_agent_after_fix": true,
+  "context_for_next_testing_agent": "Core workflow was exercised successfully. Re-run public verification against an unissued state before testing issuance, then verify valid and duplicate issuance states. Unknown UI route currently shows correct message but incorrect VERIFIED badge.",
+  "rca of the issue": "Backend /api/public/verify compares the requested ID to (state.passport or {}).get('id', 'SAU-NSC-08-4F2A'), so the demo identifier is treated as issued even when passport is null. PublicVerify independently hardcodes the VERIFIED chip instead of deriving it from result.status."
+}

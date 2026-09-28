@@ -8,6 +8,7 @@ export const TopNav = () => {
     { to: "/facilities", label: "Facilities" },
     { to: "/processes", label: "Processes" },
     { to: "/periods", label: "Periods" },
+    { to: "/approvals", label: "Approvals" },
     { to: "/users", label: "Users" },
     { to: "/localisation", label: "Locale" },
   ];

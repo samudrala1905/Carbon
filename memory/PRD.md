@@ -60,6 +60,14 @@ Profile page showing the legal identity of the company: legal name, trading name
 - Configure Localisation modal with presets Ghana/India/EU/UK across Regional/Units/Regulatory tabs; LocalisationContext (in-memory)
 - TopNav: Profile · Facilities · Processes · Periods · Users · Locale
 
+## Approvals + Segregation of Duties (2026-06)
+- `/approvals` — summary tiles (Pending My Approval, Submitted, Approved, Rejected/Returned, Expiring) as clickable filters
+- Queue: Request, Type, Facility/Product, Submitted By, Submitted Date, Risk, Status, Action (Review)
+- Detail modal: What Changed (old→new), Supporting Evidence, Submitted By, Comments, Approval History; actions APPROVE / RETURN FOR CORRECTION / REJECT (return/reject need comment), permission-gated
+- Segregation of duties: submitter role cannot self-approve — filtered from Pending + blocked in modal with warning; verified
+- ApprovalsContext (in-memory), SoD keyed off acting role from UsersContext
+- TopNav: Profile · Facilities · Processes · Periods · Approvals · Users · Locale
+
 ## Backlog
-- P1: Persist all data to MongoDB; real auth; server-enforced RBAC; auto audit log; apply active localisation formatting app-wide
-- P2: Products/Batches + PCF engine, emissions charts, real geo map, logo upload, PDF export, CBAM/compliance module
+- P1: Persist all data to MongoDB; real auth + real user identities for true SoD; server-enforced RBAC; auto audit log
+- P2: Products/Batches + PCF engine, emissions charts, geo map, logo upload, PDF export, CBAM/compliance module, multi-step approval chains

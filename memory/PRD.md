@@ -24,6 +24,13 @@ Profile page showing the legal identity of the company: legal name, trading name
 - Edit Organisation Profile modal — tabbed (Legal Identity / Carbon Boundary / Contacts); saving updates page state in-memory + toast
 - Custom emerald/slate palette, Plus Jakarta Sans / Manrope / JetBrains Mono fonts, light+dark tokens
 
+## Facilities Feature (2026-06)
+- `/facilities` list — searchable, cards + table view toggle, summary stats, status & readiness badges, data-completeness bars
+- `/facilities/:id` detail — details, geo location, capacity, hours, manager, energy sources, utilities, products, emission sources
+- Full data hierarchy tree: Organisation → Facility → Process → Production Line → Equipment/Meter → Data Source
+- Actions: Add Facility, Edit Facility, Connect Device (live-updates hierarchy) via FacilitiesContext (in-memory)
+- Shared TopNav (Profile ↔ Facilities)
+
 ## Backlog
-- P1: Persist edits to MongoDB; auto-log audit entries on each change
-- P2: Company logo upload (object storage), multi-entity registry list, export profile PDF
+- P1: Persist all edits (profile, facilities, devices) to MongoDB; auto-log audit entries on each change
+- P2: Company logo upload (object storage), multi-entity registry, export profile/facility PDF, real map for geo location

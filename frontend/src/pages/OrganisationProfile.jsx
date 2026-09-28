@@ -7,7 +7,6 @@ import {
   ShieldCheck,
   History,
   Pencil,
-  Leaf,
   Mail,
   Phone,
   Fingerprint,
@@ -26,6 +25,7 @@ import {
 import { Field } from "@/components/profile/Field";
 import { StatusBadge } from "@/components/profile/StatusBadge";
 import { EditProfileModal } from "@/components/profile/EditProfileModal";
+import { TopNav } from "@/components/TopNav";
 import { initialProfile, auditTrail } from "@/data/mockProfile";
 
 const SectionHeader = ({ icon: Icon, title, subtitle }) => (
@@ -73,29 +73,7 @@ export default function OrganisationProfile() {
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 font-body">
-      {/* Top bar */}
-      <div className="border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-950/80 backdrop-blur-md sticky top-0 z-30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-2.5">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-800 text-white">
-              <Leaf className="h-4 w-4" />
-            </div>
-            <div className="flex flex-col leading-none">
-              <span className="font-heading font-bold text-sm text-slate-900 dark:text-slate-100">
-                Carbon Passport
-              </span>
-              <span className="text-[10px] font-mono uppercase tracking-widest text-slate-400">
-                Organisation Registry
-              </span>
-            </div>
-          </div>
-          <nav className="hidden md:flex items-center gap-1 text-xs font-mono text-slate-400">
-            <span>Registry</span>
-            <span>/</span>
-            <span className="text-slate-700 dark:text-slate-200">Profile</span>
-          </nav>
-        </div>
-      </div>
+      <TopNav />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
         {/* Header / Command bar */}

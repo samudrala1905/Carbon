@@ -1,0 +1,189 @@
+{
+  "project_name": "Carbon Passport - Organisation Profile Dashboard",
+  "app_type": "dashboard",
+  "archetype": "Organic & Earthy + Swiss Precision (Enterprise ESG Compliance)",
+  "design_philosophy": {
+    "core_principles": [
+      "Tactical ESG Precision: Sharp structural grids with high data density that instills audit-grade confidence",
+      "Organic Grounding: Earthy forest emerald accents paired with deep charcoal slates and crisp bone neutrals",
+      "Immutable Transparency: Distinct visual emphasis on audit trails, LEI identifiers, and verification badges",
+      "Zero Visual Monotony: High-contrast typography pairing, micro-interactions, and clear status visual hierarchy"
+    ],
+    "forbidden_elements": [
+      "Teal blue / Teal green #1B93A4 (Forbidden dashboard color)",
+      "Space Grotesk font (Forbidden dashboard font)",
+      "Inter, Roboto, Open Sans, Lato for Headings (Must use Outfit / Plus Jakarta Sans / Manrope)",
+      "Full transparent overlay or dropdown containers without blur/background",
+      "Generic centered layouts with cramped cards"
+    ]
+  },
+  "typography": {
+    "heading_font": "Plus Jakarta Sans, sans-serif",
+    "body_font": "Manrope, sans-serif",
+    "mono_font": "JetBrains Mono, monospace",
+    "hierarchy": {
+      "h1_page_title": "text-2xl sm:text-3xl font-bold tracking-tight font-heading text-slate-900 dark:text-slate-100",
+      "h2_section_title": "text-lg sm:text-xl font-semibold tracking-tight font-heading text-slate-900 dark:text-slate-100 flex items-center gap-2",
+      "h3_card_title": "text-base font-semibold text-slate-900 dark:text-slate-100",
+      "label_overline": "text-xs font-mono font-medium tracking-wider uppercase text-slate-500 dark:text-slate-400",
+      "body_standard": "text-sm text-slate-700 dark:text-slate-300 leading-relaxed",
+      "data_value": "text-sm font-medium text-slate-900 dark:text-slate-100 font-mono"
+    }
+  },
+  "colors": {
+    "palette_mode": "Light / Dark hybrid support",
+    "css_variables": {
+      "primary_emerald": "#054F31",
+      "primary_emerald_light": "#10B981",
+      "surface_background": "#F8FAFC",
+      "surface_card": "#FFFFFF",
+      "surface_card_dark": "#0F172A",
+      "border_subtle": "#E2E8F0",
+      "border_subtle_dark": "#1E293B",
+      "text_primary": "#0F172A",
+      "text_secondary": "#64748B",
+      "accent_emerald_bg": "#ECFDF5",
+      "accent_emerald_text": "#047857"
+    },
+    "status_badges": {
+      "verified": "bg-emerald-50 text-emerald-800 border-emerald-300 dark:bg-emerald-950/60 dark:text-emerald-300 dark:border-emerald-800",
+      "active": "bg-sky-50 text-sky-800 border-sky-300 dark:bg-sky-950/60 dark:text-sky-300 dark:border-sky-800",
+      "draft": "bg-amber-50 text-amber-800 border-amber-300 dark:bg-amber-950/60 dark:text-amber-300 dark:border-amber-800"
+    }
+  },
+  "layout_and_structure": {
+    "grid_system": "12-column Bento Grid (MODE B High Density)",
+    "container": "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8",
+    "sections": [
+      {
+        "name": "Header & Command Bar",
+        "description": "Page title, Carbon Passport status badge (Verified/Active/Draft), last audit timestamp, and primary CTA 'Edit Organisation Profile'",
+        "test_ids": {
+          "header_title": "organisation-profile-title",
+          "edit_button": "edit-organisation-profile-button",
+          "status_badge": "organisation-status-badge"
+        }
+      },
+      {
+        "name": "Company Legal Identity Panel",
+        "grid_span": "lg:col-span-7",
+        "fields": [
+          "Legal Name",
+          "Trading Name",
+          "Organisation ID",
+          "Registration / Incorporation Number",
+          "Country of Incorporation",
+          "Registered Address",
+          "Headquarters Location",
+          "Industry / Sector (NACE / NAICS)",
+          "Primary Commodities / Products",
+          "Company Website",
+          "Tax / VAT / GST ID",
+          "LEI (Legal Entity Identifier)",
+          "Company Logo",
+          "Primary Contact (Name, Title, Email)",
+          "Sustainability / Compliance Contact"
+        ],
+        "test_ids": {
+          "panel": "company-legal-identity-panel",
+          "legal_name": "company-legal-name",
+          "org_id": "company-org-id",
+          "lei_number": "company-lei-number"
+        }
+      },
+      {
+        "name": "Carbon Accounting Boundary Panel",
+        "grid_span": "lg:col-span-5",
+        "fields": [
+          "Consolidation Approach (Operational Control / Financial Control / Equity Share)",
+          "Base Year",
+          "Reporting Currency",
+          "Default Emission Units (tCO2e)",
+          "GHG Reporting Standard (e.g. GHG Protocol Corporate Standard, ISO 14064-1)",
+          "Organisation Status (Draft / Active / Verified)",
+          "Reporting Period Alignment"
+        ],
+        "test_ids": {
+          "panel": "carbon-boundary-panel",
+          "consolidation_approach": "boundary-consolidation-approach",
+          "base_year": "boundary-base-year",
+          "ghg_standard": "boundary-ghg-standard"
+        }
+      },
+      {
+        "name": "Registration & Verification Status Panel",
+        "grid_span": "col-span-full",
+        "fields": [
+          "Third-Party Auditor Verification Seal (ISAE 3410 / ISO 14065 Accredited)",
+          "Verification Provider Name & Accreditor ID",
+          "Verification Certificate Hash",
+          "Verification Date & Expiry",
+          "Assurance Level (Limited / Reasonable Assurance)"
+        ],
+        "test_ids": {
+          "panel": "registration-verification-panel",
+          "verification_status": "verification-status-badge",
+          "auditor_name": "auditor-provider-name"
+        }
+      },
+      {
+        "name": "Audit Trail Log Table",
+        "grid_span": "col-span-full",
+        "columns": [
+          "Timestamp",
+          "User & Role",
+          "Section / Field Modified",
+          "Previous Value",
+          "Updated Value",
+          "Verification Status / Change Hash"
+        ],
+        "test_ids": {
+          "table": "audit-trail-table",
+          "row_item": "audit-trail-row-item"
+        }
+      },
+      {
+        "name": "Edit Organisation Profile Drawer/Modal",
+        "type": "Shadcn Dialog / Sheet with Tabbed Navigation",
+        "tabs": [
+          "Legal Identity",
+          "Carbon Accounting Boundary",
+          "Contacts & Compliance"
+        ],
+        "test_ids": {
+          "modal": "edit-profile-modal",
+          "save_button": "save-profile-changes-button",
+          "cancel_button": "cancel-profile-changes-button"
+        }
+      }
+    ]
+  },
+  "component_styling_rules": {
+    "cards": "bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-xl shadow-xs p-6 space-y-6 hover:border-slate-300 dark:hover:border-slate-700 transition-colors",
+    "data_grid_item": "flex flex-col gap-1 p-3 rounded-lg bg-slate-50/60 dark:bg-slate-800/40 border border-slate-100 dark:border-slate-800/80",
+    "buttons": {
+      "primary": "bg-emerald-800 hover:bg-emerald-900 text-white font-medium px-4 py-2.5 rounded-lg shadow-xs transition-all duration-150 flex items-center gap-2 text-sm focus:ring-2 focus:ring-emerald-600 focus:outline-none",
+      "secondary": "bg-slate-100 hover:bg-slate-200 text-slate-800 dark:bg-slate-800 dark:hover:bg-slate-700 dark:text-slate-200 font-medium px-4 py-2.5 rounded-lg transition-all text-sm"
+    },
+    "tables": "w-full text-left border-collapse text-sm text-slate-700 dark:text-slate-300",
+    "table_header": "bg-slate-50 dark:bg-slate-800/80 text-xs uppercase font-mono tracking-wider text-slate-500 dark:text-slate-400 py-3 px-4 border-b border-slate-200 dark:border-slate-700"
+  },
+  "media_assets": {
+    "company_logo": "https://images.unsplash.com/photo-1675130277336-23cb686f01c0?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NTJ8MHwxfHNlYXJjaHwyfHxzdXN0YWluYWJsZSUyMGNvcnBvcmF0ZSUyMGNvbXBhbnklMjBsb2dvJTIwZ3JlZW4lMjBlbmVyZ3l8ZW58MHx8fHwxNzkwNjA1MzkyfDA&ixlib=rb-4.1.0&q=85",
+    "verification_seal_icon": "ShieldCheck / Award / CheckCircle2 from lucide-react"
+  },
+  "instructions_to_main_agent": [
+    "Build a modern React (.js/.jsx) page for Organisation Profile matching Carbon Passport corporate ESG compliance design guidelines.",
+    "Ensure all key sections are populated with realistic mock enterprise data (e.g., 'EcoGlobal Logistics Corp', LEI: 5493001KJTIIGC8Y1R12, GHG Protocol Corporate Standard, Operational Control boundary).",
+    "Add 'Edit Organisation Profile' modal with functional state allowing users to update fields and see changes dynamically updated.",
+    "Include a filterable or readable Audit Trail log at the bottom showing immutable record edits.",
+    "Include data-testid on all interactive buttons, inputs, tabs, status badges, and table rows."
+  ],
+  "UNIVERSAL GUIDELINES FOR MAIN AGENT": [
+    "DO NOT use generic Inter or Space Grotesk font for main headings",
+    "DO NOT use forbidden color #1B93A4",
+    "All interactive and key informational elements MUST include a data-testid attribute in kebab-case format",
+    "Use Sonner for toasts when profile editing is saved",
+    "Ensure high contrast in both light and dark modes according to APCA/WCAG rules"
+  ]
+}`,overwrite:true,path:

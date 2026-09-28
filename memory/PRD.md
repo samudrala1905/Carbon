@@ -38,6 +38,14 @@ Profile page showing the legal identity of the company: legal name, trading name
 - Tema chain seeded: Raw Cocoa Receiving → Cleaning → Roasting → Grinding → Pressing → Cocoa Butter Refining → Packaging → Storage
 - TopNav now: Profile · Facilities · Processes
 
+## Users & Roles + RBAC (2026-06)
+- `/users` — Team Members table (Name, Email, Organisation, Facility Access, Role, Last Login, Status) with search + per-row Assign Role
+- Roles & Permissions tab: matrix of 8 roles × 9 permissions (View, Create, Edit, Submit, Verify, Approve, Issue, Revoke, Export) + role description cards
+- Roles: Organisation Admin, Facility Manager, Data Operator, Carbon Manager, Compliance Manager, Verifier, Auditor, Viewer
+- Functional RBAC: "acting as" role switcher gates Invite/Assign actions (hasPermission) with lock + tooltip
+- Actions: Invite User (role + facility-access picker), Assign Role — via UsersContext (in-memory)
+- TopNav: Profile · Facilities · Processes · Users
+
 ## Backlog
-- P1: Persist all edits (profile, facilities, devices, processes) to MongoDB; auto-log audit entries
-- P2: Products/Batches + full PCF calculation engine, per-facility emissions charts, real geo map, logo upload, PDF export
+- P1: Persist all data (profile, facilities, devices, processes, users) to MongoDB; real auth; auto-log audit entries
+- P2: Products/Batches + PCF engine, emissions charts, real geo map, logo upload, PDF export, per-page route guards enforcing RBAC

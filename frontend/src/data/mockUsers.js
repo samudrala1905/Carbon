@@ -1,0 +1,162 @@
+// Roles, granular permissions and seed users for Carbon Passport RBAC demo.
+
+export const PERMISSIONS = [
+  "View",
+  "Create",
+  "Edit",
+  "Submit",
+  "Verify",
+  "Approve",
+  "Issue",
+  "Revoke",
+  "Export",
+];
+
+export const ROLES = {
+  "Organisation Admin": {
+    description: "Complete organisation access — manage everything across all facilities.",
+    permissions: [...PERMISSIONS],
+    tone: "bg-emerald-50 text-emerald-800 border-emerald-300 dark:bg-emerald-950/60 dark:text-emerald-300 dark:border-emerald-800",
+  },
+  "Facility Manager": {
+    description: "Manage assigned facilities, their processes and activity data.",
+    permissions: ["View", "Create", "Edit", "Submit", "Export"],
+    tone: "bg-sky-50 text-sky-800 border-sky-300 dark:bg-sky-950/60 dark:text-sky-300 dark:border-sky-800",
+  },
+  "Data Operator": {
+    description: "Upload and manage activity data for assigned facilities.",
+    permissions: ["View", "Create", "Edit", "Submit"],
+    tone: "bg-cyan-50 text-cyan-800 border-cyan-300 dark:bg-cyan-950/60 dark:text-cyan-300 dark:border-cyan-800",
+  },
+  "Carbon Manager": {
+    description: "Run CCF / PCF calculations and manage emission factors.",
+    permissions: ["View", "Create", "Edit", "Submit", "Export"],
+    tone: "bg-indigo-50 text-indigo-800 border-indigo-300 dark:bg-indigo-950/60 dark:text-indigo-300 dark:border-indigo-800",
+  },
+  "Compliance Manager": {
+    description: "Handle CBAM and regulatory compliance submissions.",
+    permissions: ["View", "Submit", "Approve", "Export"],
+    tone: "bg-violet-50 text-violet-800 border-violet-300 dark:bg-violet-950/60 dark:text-violet-300 dark:border-violet-800",
+  },
+  Verifier: {
+    description: "Review evidence and approve or reject submissions.",
+    permissions: ["View", "Verify", "Approve", "Export"],
+    tone: "bg-amber-50 text-amber-800 border-amber-300 dark:bg-amber-950/60 dark:text-amber-300 dark:border-amber-800",
+  },
+  Auditor: {
+    description: "Read-only audit access across records and evidence.",
+    permissions: ["View", "Export"],
+    tone: "bg-orange-50 text-orange-800 border-orange-300 dark:bg-orange-950/60 dark:text-orange-300 dark:border-orange-800",
+  },
+  Viewer: {
+    description: "Dashboard and report viewing access only.",
+    permissions: ["View"],
+    tone: "bg-slate-100 text-slate-600 border-slate-300 dark:bg-slate-800/60 dark:text-slate-400 dark:border-slate-700",
+  },
+};
+
+export const ROLE_NAMES = Object.keys(ROLES);
+export const userStatuses = ["Active", "Invited", "Suspended"];
+
+export const users = [
+  {
+    id: "USR-001",
+    name: "Amara Okafor",
+    email: "a.okafor@ecoglobal-freight.com",
+    organisation: "EcoGlobal Logistics Corp",
+    facilityAccess: ["All Facilities"],
+    role: "Organisation Admin",
+    lastLogin: "2026-06-27 08:14",
+    status: "Active",
+  },
+  {
+    id: "USR-002",
+    name: "Kwame Mensah",
+    email: "k.mensah@ecoglobal-freight.com",
+    organisation: "EcoGlobal Logistics Corp",
+    facilityAccess: ["Tema Processing Plant"],
+    role: "Facility Manager",
+    lastLogin: "2026-06-27 06:50",
+    status: "Active",
+  },
+  {
+    id: "USR-003",
+    name: "Greta Bauer",
+    email: "g.bauer@ecoglobal-freight.com",
+    organisation: "EcoGlobal Logistics Corp",
+    facilityAccess: ["Hamburg Distribution Hub"],
+    role: "Facility Manager",
+    lastLogin: "2026-06-26 17:22",
+    status: "Active",
+  },
+  {
+    id: "USR-004",
+    name: "Rafael Costa",
+    email: "r.costa@ecoglobal-freight.com",
+    organisation: "EcoGlobal Logistics Corp",
+    facilityAccess: ["São Paulo Assembly Line"],
+    role: "Data Operator",
+    lastLogin: "2026-06-25 12:03",
+    status: "Active",
+  },
+  {
+    id: "USR-005",
+    name: "Dr. Lena Hoffmann",
+    email: "l.hoffmann@ecoglobal-freight.com",
+    organisation: "EcoGlobal Logistics Corp",
+    facilityAccess: ["All Facilities"],
+    role: "Carbon Manager",
+    lastLogin: "2026-06-27 09:41",
+    status: "Active",
+  },
+  {
+    id: "USR-006",
+    name: "Sofia Almeida",
+    email: "s.almeida@ecoglobal-freight.com",
+    organisation: "EcoGlobal Logistics Corp",
+    facilityAccess: ["All Facilities"],
+    role: "Compliance Manager",
+    lastLogin: "2026-06-24 15:37",
+    status: "Active",
+  },
+  {
+    id: "USR-007",
+    name: "James Whitfield",
+    email: "j.whitfield@bureauveritas.com",
+    organisation: "Bureau Veritas (External)",
+    facilityAccess: ["Tema Processing Plant", "Hamburg Distribution Hub"],
+    role: "Verifier",
+    lastLogin: "2026-06-20 11:10",
+    status: "Active",
+  },
+  {
+    id: "USR-008",
+    name: "Priya Nair",
+    email: "p.nair@auditpartners.com",
+    organisation: "Audit Partners LLP (External)",
+    facilityAccess: ["All Facilities"],
+    role: "Auditor",
+    lastLogin: "2026-06-18 09:00",
+    status: "Active",
+  },
+  {
+    id: "USR-009",
+    name: "Marcus Webb",
+    email: "m.webb@ecoglobal-freight.com",
+    organisation: "EcoGlobal Logistics Corp",
+    facilityAccess: ["Tema Processing Plant"],
+    role: "Data Operator",
+    lastLogin: "—",
+    status: "Invited",
+  },
+  {
+    id: "USR-010",
+    name: "Elena Rossi",
+    email: "e.rossi@board.ecoglobal.com",
+    organisation: "EcoGlobal Logistics Corp",
+    facilityAccess: ["All Facilities"],
+    role: "Viewer",
+    lastLogin: "2026-05-30 14:45",
+    status: "Suspended",
+  },
+];

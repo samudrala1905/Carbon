@@ -3,26 +3,31 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Toaster } from "sonner";
 import { FacilitiesProvider } from "@/context/FacilitiesContext";
 import { ProcessesProvider } from "@/context/ProcessesContext";
+import { UsersProvider } from "@/context/UsersContext";
 import OrganisationProfile from "@/pages/OrganisationProfile";
 import Facilities from "@/pages/Facilities";
 import FacilityDetail from "@/pages/FacilityDetail";
 import Processes from "@/pages/Processes";
 import ProcessDetail from "@/pages/ProcessDetail";
+import UsersRoles from "@/pages/UsersRoles";
 
 function App() {
   return (
     <div className="App">
       <FacilitiesProvider>
         <ProcessesProvider>
-          <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<OrganisationProfile />} />
-              <Route path="/facilities" element={<Facilities />} />
-              <Route path="/facilities/:id" element={<FacilityDetail />} />
-              <Route path="/processes" element={<Processes />} />
-              <Route path="/processes/:id" element={<ProcessDetail />} />
-            </Routes>
-          </BrowserRouter>
+          <UsersProvider>
+            <BrowserRouter>
+              <Routes>
+                <Route path="/" element={<OrganisationProfile />} />
+                <Route path="/facilities" element={<Facilities />} />
+                <Route path="/facilities/:id" element={<FacilityDetail />} />
+                <Route path="/processes" element={<Processes />} />
+                <Route path="/processes/:id" element={<ProcessDetail />} />
+                <Route path="/users" element={<UsersRoles />} />
+              </Routes>
+            </BrowserRouter>
+          </UsersProvider>
         </ProcessesProvider>
       </FacilitiesProvider>
       <Toaster richColors position="top-right" />

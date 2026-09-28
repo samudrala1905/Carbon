@@ -9,6 +9,7 @@ export const TopNav = () => {
     { to: "/processes", label: "Processes" },
     { to: "/periods", label: "Periods" },
     { to: "/users", label: "Users" },
+    { to: "/localisation", label: "Locale" },
   ];
   const isActive = (to) =>
     to === "/" ? pathname === "/" : pathname.startsWith(to);

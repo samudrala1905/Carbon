@@ -54,6 +54,12 @@ Profile page showing the legal identity of the company: legal name, trading name
 - After VERIFIED: data-lock banner; corrections create controlled recalculation versions (v2, v3…) — no silent edits
 - PeriodsContext (in-memory). TopNav: Profile · Facilities · Processes · Periods · Users
 
+## Localisation (2026-06)
+- `/localisation` — Regional (Country, Currency, Timezone, Language, Measurement), Units (Energy/Fuel/Mass/Emissions), Regulatory (frameworks, grid factor region, emission-factor datasets, CBAM destination), Formatting & Output live previews (date/number/currency/cert language)
+- Multi-jurisdiction roadmap strip: Ghana → India → EU → UK → Other markets (active highlighted)
+- Configure Localisation modal with presets Ghana/India/EU/UK across Regional/Units/Regulatory tabs; LocalisationContext (in-memory)
+- TopNav: Profile · Facilities · Processes · Periods · Users · Locale
+
 ## Backlog
-- P1: Persist all data (profile, facilities, devices, processes, users, periods) to MongoDB; real auth; server-enforced RBAC; auto audit log
+- P1: Persist all data to MongoDB; real auth; server-enforced RBAC; auto audit log; apply active localisation formatting app-wide
 - P2: Products/Batches + PCF engine, emissions charts, real geo map, logo upload, PDF export, CBAM/compliance module

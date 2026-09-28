@@ -5,6 +5,7 @@ import { FacilitiesProvider } from "@/context/FacilitiesContext";
 import { ProcessesProvider } from "@/context/ProcessesContext";
 import { UsersProvider } from "@/context/UsersContext";
 import { PeriodsProvider } from "@/context/PeriodsContext";
+import { LocalisationProvider } from "@/context/LocalisationContext";
 import OrganisationProfile from "@/pages/OrganisationProfile";
 import Facilities from "@/pages/Facilities";
 import FacilityDetail from "@/pages/FacilityDetail";
@@ -13,6 +14,7 @@ import ProcessDetail from "@/pages/ProcessDetail";
 import UsersRoles from "@/pages/UsersRoles";
 import ReportingPeriods from "@/pages/ReportingPeriods";
 import PeriodDetail from "@/pages/PeriodDetail";
+import Localisation from "@/pages/Localisation";
 
 function App() {
   return (
@@ -21,18 +23,21 @@ function App() {
         <ProcessesProvider>
           <UsersProvider>
             <PeriodsProvider>
-              <BrowserRouter>
-                <Routes>
-                  <Route path="/" element={<OrganisationProfile />} />
-                  <Route path="/facilities" element={<Facilities />} />
-                  <Route path="/facilities/:id" element={<FacilityDetail />} />
-                  <Route path="/processes" element={<Processes />} />
-                  <Route path="/processes/:id" element={<ProcessDetail />} />
-                  <Route path="/users" element={<UsersRoles />} />
-                  <Route path="/periods" element={<ReportingPeriods />} />
-                  <Route path="/periods/:id" element={<PeriodDetail />} />
-                </Routes>
-              </BrowserRouter>
+              <LocalisationProvider>
+                <BrowserRouter>
+                  <Routes>
+                    <Route path="/" element={<OrganisationProfile />} />
+                    <Route path="/facilities" element={<Facilities />} />
+                    <Route path="/facilities/:id" element={<FacilityDetail />} />
+                    <Route path="/processes" element={<Processes />} />
+                    <Route path="/processes/:id" element={<ProcessDetail />} />
+                    <Route path="/users" element={<UsersRoles />} />
+                    <Route path="/periods" element={<ReportingPeriods />} />
+                    <Route path="/periods/:id" element={<PeriodDetail />} />
+                    <Route path="/localisation" element={<Localisation />} />
+                  </Routes>
+                </BrowserRouter>
+              </LocalisationProvider>
             </PeriodsProvider>
           </UsersProvider>
         </ProcessesProvider>

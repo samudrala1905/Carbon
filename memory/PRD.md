@@ -46,6 +46,14 @@ Profile page showing the legal identity of the company: legal name, trading name
 - Actions: Invite User (role + facility-access picker), Assign Role — via UsersContext (in-memory)
 - TopNav: Profile · Facilities · Processes · Users
 
+## Reporting Periods + Audited Lifecycle (2026-06)
+- `/periods` — table: Reporting Period, Start, End, Facilities, CCF Status, Data Completeness, Verification Status, Status
+- Create Reporting Period: Monthly / Quarterly / Financial Year / Calendar Year / Custom (auto-fill name+dates), RBAC-gated (Create)
+- `/periods/:id` — lifecycle stepper OPEN → DATA LOCKED → SUBMITTED → VERIFIED → CLOSED; summary; version/recalculation history
+- RBAC transitions: Lock Data (Edit) → Submit (Submit) → Verify (Verify) → Close Period (Approve), each gated with tooltip
+- After VERIFIED: data-lock banner; corrections create controlled recalculation versions (v2, v3…) — no silent edits
+- PeriodsContext (in-memory). TopNav: Profile · Facilities · Processes · Periods · Users
+
 ## Backlog
-- P1: Persist all data (profile, facilities, devices, processes, users) to MongoDB; real auth; auto-log audit entries
-- P2: Products/Batches + PCF engine, emissions charts, real geo map, logo upload, PDF export, per-page route guards enforcing RBAC
+- P1: Persist all data (profile, facilities, devices, processes, users, periods) to MongoDB; real auth; server-enforced RBAC; auto audit log
+- P2: Products/Batches + PCF engine, emissions charts, real geo map, logo upload, PDF export, CBAM/compliance module

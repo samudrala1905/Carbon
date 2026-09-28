@@ -7,6 +7,7 @@ export const TopNav = () => {
     { to: "/", label: "Profile" },
     { to: "/facilities", label: "Facilities" },
     { to: "/processes", label: "Processes" },
+    { to: "/periods", label: "Periods" },
     { to: "/users", label: "Users" },
   ];
   const isActive = (to) =>

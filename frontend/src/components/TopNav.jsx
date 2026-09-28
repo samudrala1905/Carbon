@@ -6,6 +6,7 @@ export const TopNav = () => {
   const links = [
     { to: "/", label: "Profile" },
     { to: "/facilities", label: "Facilities" },
+    { to: "/processes", label: "Processes" },
   ];
   const isActive = (to) =>
     to === "/" ? pathname === "/" : pathname.startsWith(to);

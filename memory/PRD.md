@@ -31,6 +31,13 @@ Profile page showing the legal identity of the company: legal name, trading name
 - Actions: Add Facility, Edit Facility, Connect Device (live-updates hierarchy) via FacilitiesContext (in-memory)
 - Shared TopNav (Profile ↔ Facilities)
 
+## Processes Feature (2026-06)
+- `/processes` list — grouped per facility with ordered flow strip; columns: Process ID, Name, Input, Output, Production Line, Energy Source, Meters/Data, Scope, Status; search + facility filter
+- `/processes/:id` detail — facility process-flow strip (current highlighted), Input→Process→Output, associated carbon sources with scope badges, process attributes, and PCF trace (Product → Batch → Process → Activity → Emission Source)
+- Action: Add Process (ProcessesContext, in-memory), links back to facility
+- Tema chain seeded: Raw Cocoa Receiving → Cleaning → Roasting → Grinding → Pressing → Cocoa Butter Refining → Packaging → Storage
+- TopNav now: Profile · Facilities · Processes
+
 ## Backlog
-- P1: Persist all edits (profile, facilities, devices) to MongoDB; auto-log audit entries on each change
-- P2: Company logo upload (object storage), multi-entity registry, export profile/facility PDF, real map for geo location
+- P1: Persist all edits (profile, facilities, devices, processes) to MongoDB; auto-log audit entries
+- P2: Products/Batches + full PCF calculation engine, per-facility emissions charts, real geo map, logo upload, PDF export
